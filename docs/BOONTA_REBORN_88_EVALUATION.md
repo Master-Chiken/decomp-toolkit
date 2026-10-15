@@ -8,6 +8,10 @@ Keep decomp-toolkit as a separate developer tool. Do not copy its source tree or
 
 The upstream project's main purpose is matching decompilation of existing GameCube/Wii binaries. Boonta Reborn 88's current clean-room demo is a native homebrew build, not a matching decompilation project. Therefore, most of the matching/decompilation workflow is not directly applicable.
 
+## Initial upstream metadata check
+
+The upstream `Cargo.toml` currently declares version `1.8.4` and license expression `MIT OR Apache-2.0`. A root-level file named `LICENSE` was not found by the repository file lookup, so verify the actual license text files and dependency notices before redistributing binaries or modified source. Do not treat this metadata check as a full legal review.
+
 ## Potentially useful, limited scope
 
 1. **Inspect our own build artifacts.** Evaluate `dtk dol info` against a Boonta Reborn 88 DOL produced by the existing native build. Compare its section/entry-point report with the current artifact validator.
@@ -26,8 +30,9 @@ The upstream project's main purpose is matching decompilation of existing GameCu
 
 ## Acceptance test before integration
 
-- [ ] Identify and verify the exact dtk release and its license from upstream.
-- [ ] Run it locally or in a disposable CI job against a Boonta Reborn 88 build artifact only.
+- [x] Read upstream `Cargo.toml` and record its declared version/license expression (not a complete license review).
+- [ ] Verify the actual license text files and relevant dependency-license obligations.
+- [ ] Run a pinned dtk version against a Boonta Reborn 88 build artifact only.
 - [ ] Record command, tool version, exit code, and output.
 - [ ] Confirm whether the result adds a check not already covered by `gamecube-demo/tools/validate_artifacts.py`.
 - [ ] Keep the tool optional if it provides only duplicate information.
